@@ -9,15 +9,15 @@ def get_system_info():
 
 # Streamlit UI
 def voting_system():
-    st.title("Gerunium Brand Voting System")
+    st.title("Gerundium Brand Voting System")
     hostname, current_time = get_system_info()
     
     # Display version, hostname, and current time in a dark grey background
     st.markdown("""
         <div style="background-color: #2f2f2f; padding: 20px; border-radius: 10px;">
-            <h3 style="color: white; text-align: left; font-size: 18px;">Version: 2.0</h3>
-            <h3 style="color: white; text-align: left; font-size: 18px;">Hostname: """ + hostname + """</h3>
-            <h3 style="color: white; text-align: left; font-size: 18px;">Current Time: """ + current_time + """</h3>
+            <h3 style="color: white; text-align: left; font-size: 24px;">Version: 1</h3>
+            <h3 style="color: white; text-align: left; font-size: 20px;">Hostname: """ + hostname + """</h3>
+            <h3 style="color: white; text-align: left; font-size: 20px;">Current Time: """ + current_time + """</h3>
         </div>
     """, unsafe_allow_html=True)
     
