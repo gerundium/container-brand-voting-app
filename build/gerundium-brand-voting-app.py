@@ -24,7 +24,7 @@ def start_metrics_server():
     try:
         start_http_server(9090)
     except OSError:
-        print("Cannot start metrics server")src/gerundium-brand-voting-app_v4.py
+        print("Cannot start metrics server")
         pass  # Ignore error if server is already running
 
 if 'metrics_server_started' not in st.session_state:
