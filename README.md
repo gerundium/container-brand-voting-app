@@ -11,3 +11,7 @@
 ```bash
 docker run -it --rm -p 8501:8501 -p 9090:9090 gerundium/brand-voting-app
 ```
+
+## Build a new image version
+1. Apply code changes to build/gerundium-brand-voting-app.py
+2. Commit change with comment : "trigger: Build new image"
