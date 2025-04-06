@@ -1,0 +1,10 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: gerundium-brand-voting-app
+spec:
+  template:
+    spec:
+      containers:
+      - name: gerundium-brand-voting-app
+        image: docker.io/gerundium/brand-voting-app:v2

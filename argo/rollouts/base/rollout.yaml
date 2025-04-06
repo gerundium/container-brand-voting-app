@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  labels:
+    app: gerundium-brand-voting-app
+  name: gerundium-brand-voting-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: gerundium-brand-voting-app
+  strategy:
+    blueGreen:
+      autoPromotionEnabled: true
+      autoPromotionSeconds: 30
+      activeService: gerundium-brand-voting-app
+      previewService: gerundium-brand-voting-app-preview
+      scaleDownDelaySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: gerundium-brand-voting-app
+    spec:
+      containers:
+      - image: docker.io/gerundium/brand-voting-app:latest
+        name: gerundium-brand-voting-app
+        imagePullPolicy: IfNotPresent
+        resources: 
+          requests:
+            cpu: "50m"
+            memory: "64Mi"
+          limits: 
+            cpu: "250m"
+            memory: "128Mi"
+

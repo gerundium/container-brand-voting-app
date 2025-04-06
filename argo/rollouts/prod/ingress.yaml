@@ -1,0 +1,19 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gerundium-brand-voting-app
+  namespace: prod
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: gerundium-brand-voting-app.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: gerundium-brand-voting-app
+            port:
+              number: 80
