@@ -1,0 +1,66 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: brand-voting-app
+  namespace: argocd
+  selfLink: /apis/argoproj.io/v1alpha1/namespaces/argocd/appprojects/brand-voting-app
+spec:
+  description: Gerundium Brand Voting Application
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+    - name: in-cluster
+      namespace: staging
+      server: https://kubernetes.default.svc
+    - name: in-cluster
+      namespace: prod
+      server: https://kubernetes.default.svc
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  sourceRepos:
+    - '*'
+status: {}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gerundium-bva-staging
+  namespace: argocd
+  selfLink: >-
+    /apis/argoproj.io/v1alpha1/namespaces/argocd/applications/gerundium-bva-staging
+spec:
+  destination:
+    namespace: staging
+    server: https://kubernetes.default.svc
+  project: brand-voting-app
+  source:
+    path: argo/apps/gerundium-brand-voting-app/staging
+    repoURL: git@github.com:gerundium/container-brand-voting-app.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gerundium-bva-prod
+  namespace: argocd
+  selfLink: >-
+    /apis/argoproj.io/v1alpha1/namespaces/argocd/applications/gerundium-bva-prod
+spec:
+  destination:
+    namespace: prod
+    server: https://kubernetes.default.svc
+  project: brand-voting-app
+  source:
+    path: argo/apps/gerundium-brand-voting-app/prod
+    repoURL: git@github.com:gerundium/container-brand-voting-app.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
