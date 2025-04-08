@@ -1,6 +1,10 @@
 # Use the official Python image from the Docker Hub
 FROM python:3.12-slim
 
+# Set labels
+LABEL maintainer="gerundium@mailbox.org"
+LABEL app="gerundium-brand-voting-app"
+
 # Set the working directory inside the container
 WORKDIR /app
 
